@@ -2,8 +2,9 @@
 
 namespace App\Requests\Categories;
 
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Validator;
 
 class CreateValidation extends FormRequest {
   /**
@@ -24,5 +25,11 @@ class CreateValidation extends FormRequest {
     return [
       'name' => 'required|unique:categories|max:255',
     ];
+  }
+
+  public function failedValidation(Validator $validator) {
+    throw new HttpResponseException(response()->json([
+        'errors' => $validator->errors(),
+    ], 400));
   }
 }

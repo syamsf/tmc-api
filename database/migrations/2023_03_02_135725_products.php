@@ -24,6 +24,10 @@ return new class extends Migration
         ->restrictOnDelete()
         ->cascadeOnUpdate();
       $table->timestamps();
+
+      $table->index('sku');
+      $table->index('name');
+      $table->index(['sku', 'name']);
     });
   }
 

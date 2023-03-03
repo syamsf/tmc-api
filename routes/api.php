@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Categories;
 use App\Http\Controllers\API\Products;
+use App\Http\Controllers\API\Query;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,10 @@ Route::group(['middleware' => ['json.response']], function () {
 
     Route::group(['prefix' => 'token'], function() {
       Route::post('/');
+    });
+
+    Route::group(['prefix' => 'search'], function() {
+      Route::get('/', [Query::class, 'search']);
     });
   });
 });
