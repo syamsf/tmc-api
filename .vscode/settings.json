@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "app/Http": false
+  },
+  "workspace.isHidden": false
+}

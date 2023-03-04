@@ -1,0 +1,118 @@
+---
+version: '3.4'
+
+services:
+
+  # Command API Service
+  command-api: &command-api
+    build:
+      context: .
+      dockerfile: .
+    depends_on:
+      - db-api
+      - api-worker
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: db-api
+      DB_USERNAME: "${DB_USERNAME}"
+      DB_DATABASE: "${DB_COMMAND_DATABASE}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      RABBITMQ_PORT: "${RABBITMQ_PORT}"
+      RABBITMQ_HOST: rabbitmq-dev
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS}"
+    ports:
+      - "8031:80"
+      - "8041:443"
+    networks:
+      - dev
+      - public
+
+  # Query API Service
+  query-api-tmc:
+    <<: *command-api
+    depends_on:
+      - command-api
+      - db-api
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: db-api
+      DB_USERNAME: "${DB_USERNAME}"
+      DB_DATABASE: "${DB_QUERY_DATABASE}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      RABBITMQ_PORT: "${RABBITMQ_PORT}"
+      RABBITMQ_HOST: rabbitmq-dev
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS}"
+    ports:
+      - "8032:80"
+      - "8042:443"
+    networks:
+      - dev
+      - public
+
+  # API Worker
+  api-worker:
+    <<: *command-api
+    depends_on:
+      - db-api
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: db-api
+      DB_USERNAME: "${DB_USERNAME}"
+      DB_DATABASE: "${DB_QUERY_DATABASE}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      RABBITMQ_PORT: "${RABBITMQ_PORT}"
+      RABBITMQ_HOST: rabbitmq-dev
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS}"
+    ports:
+      - "9031:80"
+      - "9001:9001"
+    networks:
+      - dev
+      - public
+
+  # Database
+  db-api:
+    image: mariadb:10.3.9
+    environment:
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - ./provision/mysql/init:/docker-entrypoint-initdb.d
+      - dbdata-dev:/var/lib/mysql
+    ports:
+      - "3337:3306"
+    networks:
+      - dev
+      - public
+
+  # RabbitMq Service
+  rabbitmq-dev:
+    hostname: rabbitmqdev
+    image: rabbitmq:3.10.7-management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - rabbitmq-data-dev:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - dev
+      - public
+
+networks:
+  dev:
+    external: false
+  public:
+    external: true
+
+volumes:
+  dbdata-dev:
+    driver: local
+  rabbitmq-data-dev:
+    driver: local
