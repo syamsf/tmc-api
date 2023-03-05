@@ -1,6 +1,6 @@
 FROM composer:2.4.1 AS composer
 
-FROM php:8.1.9-cli AS build
+FROM php:8.2-cli AS build
 
 WORKDIR /app
 
@@ -15,18 +15,18 @@ RUN apt-get update && apt-get -y install  \
 
 RUN composer create-project laravel/laravel /app
 
-COPY composer.json ./
+COPY query_api/composer.json ./
 
 RUN composer update
 
 RUN composer install
 
-COPY app ./app
-COPY config ./config
-COPY resources ./resources
-COPY database ./database
-COPY routes ./routes
-COPY .env.example ./.env
+COPY query_api/app ./app
+COPY query_api/config ./config
+COPY query_api/resources ./resources
+COPY query_api/database ./database
+COPY query_api/routes ./routes
+COPY query_api/.env.example ./.env
 
 RUN mkdir -p storage/framework/cache
 RUN mkdir -p storage/framework/sessions
@@ -35,25 +35,27 @@ RUN mkdir -p storage/framework/views
 RUN mkdir -p storage/logs
 RUN mkdir -p storage/app
 
-FROM php:8.1.9-apache
+FROM php:8.2.2-apache
 
 WORKDIR /var/www/html/
 
 COPY --from=build --chown=www-data:www-data /app /var/www/html/
 
-COPY provision/webserver/vhosts.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/provision/webserver/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN a2enmod rewrite \
-    && a2enmod ssl \
-    && apt-get update \
-    && apt-get install -y \
-    && docker-php-ext-install pdo_mysql \
-    && apt-get install supervisor net-tools iputils-ping -y \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    && rm -rf /var/lib/apt/lists/*
+   && a2enmod ssl \
+   && apt-get update \
+   && apt-get install -y \
+   && docker-php-ext-install pdo_mysql \
+   && apt-get install supervisor net-tools iputils-ping -y \
+   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+   && rm -rf /var/lib/apt/lists/*
 
-COPY provision/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
-COPY provision/supervisor/config /etc/supervisor/conf.d
+COPY docker/provision/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+COPY docker/provision/supervisor/config /etc/supervisor/conf.d
+
+RUN php artisan key:generate
 
 RUN php artisan cache:clear
 

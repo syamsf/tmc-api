@@ -1,13 +1,13 @@
 ---
-version: '3.4'
+version: '3.9'
 
 services:
 
   # Command API Service
-  command-api: &command-api
+  command-api:
     build:
-      context: .
-      dockerfile: .
+      context: ../
+      dockerfile: docker/Dockerfile.command_api
     depends_on:
       - db-api
       - api-worker
@@ -15,7 +15,7 @@ services:
       DB_CONNECTION: mysql
       DB_HOST: db-api
       DB_USERNAME: "${DB_USERNAME}"
-      DB_DATABASE: "${DB_COMMAND_DATABASE}"
+      DB_DATABASE: "${DB_COMMAND_API_DATABASE}"
       DB_PASSWORD: "${DB_PASSWORD}"
       RABBITMQ_PORT: "${RABBITMQ_PORT}"
       RABBITMQ_HOST: rabbitmq-dev
@@ -29,21 +29,27 @@ services:
       - public
 
   # Query API Service
-  query-api-tmc:
-    <<: *command-api
+  query-api: &query-api 
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.query_api
     depends_on:
-      - command-api
       - db-api
     environment:
       DB_CONNECTION: mysql
       DB_HOST: db-api
       DB_USERNAME: "${DB_USERNAME}"
-      DB_DATABASE: "${DB_QUERY_DATABASE}"
+      DB_DATABASE: "${DB_QUERY_API_DATABASE}"
       DB_PASSWORD: "${DB_PASSWORD}"
       RABBITMQ_PORT: "${RABBITMQ_PORT}"
       RABBITMQ_HOST: rabbitmq-dev
       RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER}"
       RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS}"
+      DB_COMMAND_API_HOST: db-api 
+      DB_COMMAND_API_PORT: "${DB_PORT}"
+      DB_COMMAND_API_DATABASE: "${DB_COMMAND_API_DATABASE}"
+      DB_COMMAND_API_USERNAME: "${DB_USERNAME}"
+      DB_COMMAND_API_PASSWORD: "${DB_PASSWORD}"
     ports:
       - "8032:80"
       - "8042:443"
@@ -53,14 +59,14 @@ services:
 
   # API Worker
   api-worker:
-    <<: *command-api
+    <<: *query-api
     depends_on:
       - db-api
     environment:
       DB_CONNECTION: mysql
       DB_HOST: db-api
       DB_USERNAME: "${DB_USERNAME}"
-      DB_DATABASE: "${DB_QUERY_DATABASE}"
+      DB_DATABASE: "${DB_QUERY_API_DATABASE}"
       DB_PASSWORD: "${DB_PASSWORD}"
       RABBITMQ_PORT: "${RABBITMQ_PORT}"
       RABBITMQ_HOST: rabbitmq-dev
