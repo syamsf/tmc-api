@@ -1,0 +1,574 @@
+{
+	"info": {
+		"_postman_id": "d03b760c-d46d-4cda-968c-0bf9b65adf24",
+		"name": "TMC API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15531542"
+	},
+	"item": [
+		{
+			"name": "Create Categories",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|HGKu1iValRULLu0YGeZaqh1zBEsZU0BjU5MH0l1E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"categories 2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dev-docker-command}}api/v1/categories",
+					"host": [
+						"{{dev-docker-command}}api"
+					],
+					"path": [
+						"v1",
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Categories",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|HGKu1iValRULLu0YGeZaqh1zBEsZU0BjU5MH0l1E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"categories 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-docker-command}}api/v1/categories",
+							"host": [
+								"{{dev-docker-command}}api"
+							],
+							"path": [
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 05 Mar 2023 02:28:14 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.54 (Debian)"
+						},
+						{
+							"key": "Vary",
+							"value": "Authorization"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.2"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"989c97d1-dc3d-467e-b21f-a177703e37b7\",\n        \"name\": \"categories 2\",\n        \"createdAt\": 1677983294\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Products",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|HGKu1iValRULLu0YGeZaqh1zBEsZU0BjU5MH0l1E",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sku\": \"sku-1\",\n    \"name\": \"Products 1\",\n    \"price\": 100,\n    \"stock\": 10,\n    \"categoryId\": \"989c97d1-dc3d-467e-b21f-a177703e37b7\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dev-docker-command}}api/v1/products",
+					"host": [
+						"{{dev-docker-command}}api"
+					],
+					"path": [
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Products",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|HGKu1iValRULLu0YGeZaqh1zBEsZU0BjU5MH0l1E",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"sku-1\",\n    \"name\": \"Products 1\",\n    \"price\": 100,\n    \"stock\": 10,\n    \"categoryId\": \"989c97d1-dc3d-467e-b21f-a177703e37b7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-docker-command}}api/v1/products",
+							"host": [
+								"{{dev-docker-command}}api"
+							],
+							"path": [
+								"v1",
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 05 Mar 2023 02:30:12 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.54 (Debian)"
+						},
+						{
+							"key": "Vary",
+							"value": "Authorization"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.2"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"989c9886-4a32-4361-b8a8-c179f7c3051f\",\n        \"sku\": \"sku-1\",\n        \"name\": \"Products 1\",\n        \"price\": 100,\n        \"stock\": 10,\n        \"category\": {\n            \"id\": \"989c97d1-dc3d-467e-b21f-a177703e37b7\",\n            \"name\": \"categories 2\"\n        },\n        \"createdAt\": 1677983412\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Search products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|HGKu1iValRULLu0YGeZaqh1zBEsZU0BjU5MH0l1E",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{dev-docker-query}}api/v1/search?name[]=a&name[]=b&name[]=c&price.start=1&price.end=100&sku[]=sku-1",
+					"host": [
+						"{{dev-docker-query}}api"
+					],
+					"path": [
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name[]",
+							"value": "a"
+						},
+						{
+							"key": "name[]",
+							"value": "b"
+						},
+						{
+							"key": "name[]",
+							"value": "c"
+						},
+						{
+							"key": "price.start",
+							"value": "1"
+						},
+						{
+							"key": "price.end",
+							"value": "100"
+						},
+						{
+							"key": "category.id[]",
+							"value": "989877fa-f817-41c7-8cc2-683b1f67ecbf",
+							"disabled": true
+						},
+						{
+							"key": "category.id[]",
+							"value": "def",
+							"disabled": true
+						},
+						{
+							"key": "sku[]",
+							"value": "sku-1"
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1|HGKu1iValRULLu0YGeZaqh1zBEsZU0BjU5MH0l1E",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev-docker-query}}api/v1/search?name[]=a&name[]=b&name[]=c&price.start=1&price.end=100&sku[]=sku-1",
+							"host": [
+								"{{dev-docker-query}}api"
+							],
+							"path": [
+								"v1",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name[]",
+									"value": "a"
+								},
+								{
+									"key": "name[]",
+									"value": "b"
+								},
+								{
+									"key": "name[]",
+									"value": "c"
+								},
+								{
+									"key": "price.start",
+									"value": "1"
+								},
+								{
+									"key": "price.end",
+									"value": "100"
+								},
+								{
+									"key": "category.id[]",
+									"value": "989877fa-f817-41c7-8cc2-683b1f67ecbf",
+									"disabled": true
+								},
+								{
+									"key": "category.id[]",
+									"value": "def",
+									"disabled": true
+								},
+								{
+									"key": "sku[]",
+									"value": "sku-1"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 05 Mar 2023 02:31:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.54 (Debian)"
+						},
+						{
+							"key": "Vary",
+							"value": "Authorization"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.2"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=99"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"989c9886-4a32-4361-b8a8-c179f7c3051f\",\n            \"sku\": \"sku-1\",\n            \"name\": \"Products 1\",\n            \"price\": 100,\n            \"stock\": 10,\n            \"category\": {\n                \"id\": \"989c97d1-dc3d-467e-b21f-a177703e37b7\",\n                \"name\": \"categories 2\"\n            },\n            \"createdAt\": 1677983412\n        }\n    ],\n    \"paging\": {\n        \"size\": 1,\n        \"total\": 1,\n        \"current\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"testing01@dev.local\",\n    \"name\": \"testing01\",\n    \"password\": \"test123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dev-docker-command}}api/v1/token/create",
+					"host": [
+						"{{dev-docker-command}}api"
+					],
+					"path": [
+						"v1",
+						"token",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testing01@dev.local\",\n    \"name\": \"testing01\",\n    \"password\": \"test123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev-docker-command}}api/v1/token/create",
+							"host": [
+								"{{dev-docker-command}}api"
+							],
+							"path": [
+								"v1",
+								"token",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 05 Mar 2023 02:25:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.54 (Debian)"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.2"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"token\": \"1|HGKu1iValRULLu0YGeZaqh1zBEsZU0BjU5MH0l1E\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
