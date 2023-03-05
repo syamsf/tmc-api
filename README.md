@@ -6,7 +6,7 @@
 1. Make sure that you're in root directory of this repo.
 2. Create new docker network with the name of "public" (this name reference to `docker-compose.yml`)
    ```
-   docker create network public
+   docker network create public
    ```
 
 3. Deploy the docker-compose using this command.
