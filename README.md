@@ -2,6 +2,7 @@
 ### Requirement
  - Latest docker engine
  - Latest docker-compose
+ 
 ### Run the apps
 1. Make sure that you're in root directory of this repo.
 2. Create new docker network with the name of "public" (this name reference to `docker-compose.yml`)
@@ -30,6 +31,9 @@
 - Query API: 8032
 - Supervisord: 9001
 - RabbitMQ: 15672
+
+### Update Database Access
+- If you're updating database credential in `.env` file, then you also need to configure the mysql configuration file that's located in `docker/provision/mysql/init/01-database.sql`.
 
 ### Common Problem
 - Supervisord is not started (need to start from the container)
